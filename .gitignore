@@ -1,0 +1,11 @@
+
+.qodo
+
+#virtual environment
+env1/
+
+
+#uploads and outputs
+uploads/
+
+outputs/

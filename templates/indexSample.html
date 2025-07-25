@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeScope</title>
+    <link type="image/png" sizes="32x32" rel="icon" href="{{ url_for('static', filename='icons8-application-shield-32.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sample.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>SafeScope</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="hero">
+                <h1>Security Camera Intrusion Detection</h1>
+                <p>Upload your security footage to detect potential intrusions using advanced AI technology</p>
+                
+                <div class="upload-card">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <div class="file-input-container">
+                            <input type="file" name="file" id="file" class="file-input" required>
+                            <label for="file" class="file-label">
+                                <span class="file-icon"><i class="fas fa-file-video"></i></span>
+                                <span class="file-text">Choose video / image file</span>
+                            </label>
+                            <span class="file-name" id="file-name">No file selected</span>
+                        </div>
+                        <button type="submit" class="upload-btn">
+                            <i class="fas fa-upload"></i> Analyze Footage
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <h3>AI-Powered</h3>
+                        <p>Advanced algorithms detect human presence</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Fast Analysis</h3>
+                        <p>Quick processing of video footage</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                        <h3>Secure</h3>
+                        <p>Your footage remains private and secure</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; SafeScope</p>
+            <p>Developed by Jerrisha Jisa Joel Jyothirsh</p>
+        </footer>
+    </div>
+
+    <script>
+        // Display selected filename
+        document.getElementById('file').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file selected';
+            document.getElementById('file-name').textContent = fileName;
+            
+            if (this.files[0]) {
+                document.querySelector('.file-label').classList.add('has-file');
+            } else {
+                document.querySelector('.file-label').classList.remove('has-file');
+            }
+        });
+    </script>
+</body>
+</html>

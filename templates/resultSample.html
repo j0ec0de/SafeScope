@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results | SafeScope</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sample.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>SafeScope</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="hero">
+                <h1>Detection Results</h1>
+                <p>Analysis completed. Review the detected objects below.</p>
+                
+                <div class="results-container">
+                    <h2 class="results-title">
+                        <i class="fas fa-search"></i> Analysis Findings
+                    </h2>
+                    
+                    <div class="media-container">
+                        {% if video_url %}
+                            <video width="100%" controls autoplay muted preload="metadata">
+                                <source src="{{ video_url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% elif image_url %}
+                            <img src="{{ image_url }}" alt="Annotated Image" width="100%">
+                        {% else %}
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>No media available or processing failed.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="detection-summary">
+                        <h3>
+                            <i class="fas fa-clipboard-list"></i> Detection Summary
+                        </h3>
+                        
+                        <div class="detections">
+                            {% if fire_detected or weapon_detected or person_detected or license_plate_detected %}
+                                {% if fire_detected %}
+                                    <div class="alert alert-fire">
+                                        <i class="fas fa-fire"></i> Fire detected!
+                                    </div>
+                                {% endif %}
+                                {% if weapon_detected %}
+                                    <div class="alert alert-weapon">
+                                        <i class="fas fa-exclamation-triangle"></i> Weapon detected!
+                                    </div>
+                                {% endif %}
+                                {% if person_detected %}
+                                    <div class="alert alert-person">
+                                        <i class="fas fa-user"></i> Person detected!
+                                    </div>
+                                {% endif %}
+                                {% if license_plate_detected %}
+                                    <div class="alert alert-vehicle">
+                                        <i class="fas fa-car"></i> Vehicle detected!
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <div class="no-detections">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>No objects of interest detected in this footage.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <a href="/" class="back-button">
+                            <i class="fas fa-arrow-left"></i> Back to Upload
+                        </a>
+                        <button class="download-btn" onclick="window.print()">
+                            <i class="fas fa-download"></i> Save Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="additional-info">
+                    <h3>About Detection</h3>
+                    <p>Our AI system analyzes footage for potential security threats including unauthorized persons, weapons, fire hazards, and vehicles. The system highlights these objects in the processed media for your review.</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; SafeScope</p>
+            <p>Developed by Jerrisha Jisa Joel Jyothirsh</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Add animation to detection alerts
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach((alert, index) => {
+                setTimeout(() => {
+                    alert.classList.add('alert-animate');
+                }, 300 * index);
+            });
+        });
+    </script>
+</body>
+</html>
+</qodoArtifact>
+

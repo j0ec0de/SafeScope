@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Detection Results</h1>
+
+        {% if video_url %}
+            <video width="720" height="540" controls autoplay muted preload="metadata">
+                <source src="{{ video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% elif image_url %}
+            <img src="{{ image_url }}" alt="Annotated Image" width="720">
+        {% else %}
+            <p style="color: red;">No media available or processing failed.</p>
+        {% endif %}
+
+        <div class="detections">
+            {% if fire_detected %}
+                <p class="alert alert-fire">Fire detected!</p>
+            {% endif %}
+            {% if weapon_detected %}
+                <p class="alert alert-weapon">Weapon detected!</p>
+            {% endif %}
+            {% if person_detected %}
+                <p class="alert alert-person">Person detected!</p>
+            {% endif %}
+            {% if license_plate_detected %}
+                <p class="alert alert-vehicle">Vehicle detected!</p>
+            {% endif %}
+        </div>
+
+        <a href="/" class="back-button">Go Back</a>
+    </div>
+</body>
+</html>
