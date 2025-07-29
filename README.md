@@ -48,7 +48,7 @@ SafeScope/
 2. Create and activate a virtual environment
 
     python3 -m venv env
-    source env/bin/activate   # On Windows: env\Scripts\activate
+    source env/bin/activate   # On Windows: env/Scripts/activate
 
 3. Install dependencies
 
